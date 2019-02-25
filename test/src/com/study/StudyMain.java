@@ -15,6 +15,8 @@ public class StudyMain {
         AsyncFileChannelTest asyncFileChannelTest = new AsyncFileChannelTest();
         asyncFileChannelTest.asyncFileChannel(path, false);
 
+        System.out.println("test branch1");
+
 
     }
 
