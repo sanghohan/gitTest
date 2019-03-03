@@ -4,6 +4,18 @@
 	<groupId>com.test.study</groupId>
 	<name>com.test.stduy Webapp</name>
 	<url>http://maven.apache.org</url>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<profiles>
 		<profile>
 			<id>development</id>
@@ -38,11 +50,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<webcontent-dir>${project.basedir}/src/main/webapp/WEB-INF/lib</webcontent-dir>
-		<checkstyle.config.location>http://172.19.103.95:8000/skplanet-checkstyle.xml</checkstyle.config.location>
 		<powermock.version>1.5.5</powermock.version>
 		<spring.version>3.2.9.RELEASE</spring.version>
 		<jackson.version>2.4.4</jackson.version>
-
 	</properties>
 <!--
 	<distributionManagement>
@@ -64,125 +74,23 @@
 
 	<repositories>
 		<repository>
-			<id>skp</id>
-			<name>SKP Public</name>
-			<url>http://mvn.onestorecorp.com/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
+			<id>maven-repo</id>
+			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
-
 		<repository>
-			<id>team-store-releases</id>
-			<name>Store Maven Repository - Releases</name>
-			<url>http://mvn.onestorecorp.com/content/repositories/releases/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
+			<id>Sonatype repository</id>
+			<name>Sonatype's Maven repository</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
 		</repository>
-
 		<repository>
-			<id>team-store-snapshots</id>
-			<name>Store Maven Repository - Snapshots</name>
-			<url>http://mvn.onestorecorp.com/content/repositories/snapshots/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
+			<id>mesir-repo</id>
+			<url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
 		</repository>
 	</repositories>
 
-	<!-- maven이 사용하는 plugin을 다운로드할 저장소 -->
-	<pluginRepositories>
-		<pluginRepository>
-			<id>skp</id>
-			<name>SKP Public</name>
-			<url>http://mvn.onestorecorp.com/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
-
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
 
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -244,19 +152,13 @@
 			<version>1.6.12</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.12</version>
-		</dependency>
-
 
 		<!-- Test dependencies -->
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -330,91 +232,11 @@
 			<artifactId>jsr107cache</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>jaxrpc</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>sktelecom_ecg_esb</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>crosscert</artifactId>
-			<version>1.3</version>
-		</dependency>
 
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>INIpayJAVA</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-		  <groupId>com.skplanet.commerce</groupId>
-		  <artifactId>ocg_api</artifactId>
-		  <version>1.5</version>
-		</dependency>
-
-
-		<!-- EcgDownload I/F Library -->
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>xbean</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>EcgDownloadXmlBinder</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- sktprofile Library -->
-		<dependency>
-			<groupId>com.skplanet.commerce.lib</groupId>
-			<artifactId>backport-util-concurrent</artifactId>
-			<version>3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce.lib</groupId>
-			<artifactId>ldapjdk</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce.lib</groupId>
-			<artifactId>message</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<!-- /sktprofile Library -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.2</version>
-		</dependency>
-
-		<!--
-		<dependency>
-			<groupId>org.apache.axis</groupId>
-			<artifactId>axis</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>icasApi</artifactId>
-			<version>1.0</version>
-		</dependency>-->
-
-
-
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>cryptix32</artifactId>
-			<version>1.0</version>
 		</dependency>
 
 		<dependency>
@@ -428,33 +250,10 @@
 			<version>1.7.7</version>
 		</dependency>
 
-		<!--<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.7</version>
-		</dependency>-->
-		<dependency>
-			<groupId>com.skplanet.commerce</groupId>
-			<artifactId>JCryptoSKP</artifactId>
-			<version>20120607</version>
-		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.7</version>
-		</dependency>
-		<!--
-		<dependency>
-  			<groupId>com.skplanet.pdp.sentinel.shuttle</groupId>
-  			<artifactId>tstore</artifactId>
-  			<version>0.1.7</version>
-		</dependency>
-		 -->
-		<dependency>
-			<groupId>com.skplanet.pdp.cryptoutils</groupId>
-			<artifactId>crypto-dic</artifactId>
-			<version>0.3</version>
 		</dependency>
 
 		<dependency>
@@ -483,11 +282,7 @@
 			<artifactId>json</artifactId>
 			<version>20140107</version>
 		</dependency>
-		<dependency>
-  			<groupId>com.skplanet.payplanet</groupId>
-  			<artifactId>sac-connector</artifactId>
-			<version>3.1.96-SNAPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
@@ -498,16 +293,6 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.payplanet</groupId>
-			<artifactId>jwe</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.skplanet.syruppay</groupId>
-			<artifactId>syruppay-token</artifactId>
-			<version>1.0.6</version>
 		</dependency>
 
  		<dependency>
@@ -522,16 +307,6 @@
 			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-
-
-		<!--
-		<dependency>
-            <groupId>com.skplanet.pdp.sentinel.shuttle</groupId>
-            <artifactId>tstore</artifactId>
-            <version>0.1.32</version>
-         </dependency>
-		-->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -557,140 +332,25 @@
 			<artifactId>httpasyncclient</artifactId>
 			<version>4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>RELEASE</version>
+		</dependency>
 
 	</dependencies>
-	<build>
-		<finalName>payplanet_core</finalName>
-		<resources>
-		  <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-            </resource>
-			<resource>
-				<filtering>true</filtering>
-				<directory>${project.basedir}/src/main/resources-${environments}</directory>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<fork>true</fork>
-					<meminitial>1024m</meminitial>
-					<maxmem>2048m</maxmem>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-idea-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-					<dependenciesAsLibraries>true</dependenciesAsLibraries>
-					<useFullNames>false</useFullNames>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>org.codehaus.mojo</groupId>-->
-				<!--<artifactId>cobertura-maven-plugin</artifactId>-->
-				<!--<configuration>-->
-					<!--<check></check>-->
-					<!--<formats>-->
-						<!--<format>xml</format>-->
-					<!--</formats>-->
-				<!--</configuration>-->
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<phase>package</phase>-->
-						<!--<goals>-->
-							<!--<goal>cobertura</goal>-->
-						<!--</goals>-->
-					<!--</execution>-->
-				<!--</executions>-->
-			<!--</plugin>-->
 
-			 <plugin>
-          		<groupId>org.apache.tomcat.maven</groupId>
-          		<artifactId>tomcat7-maven-plugin</artifactId>
-          		<version>2.3-SNAPSHOT</version>
-       		 </plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>sql-maven-plugin</artifactId>
-				<version>1.5</version>
-				<dependencies>
-			        <dependency>
-			        	<groupId>mysql</groupId>
-			            <artifactId>mysql-connector-java</artifactId>
-			            <version>5.1.6</version>
-					</dependency>
-		        </dependencies>
-			</plugin>
-
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>2.5.5-SNAPSHOT</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>2.12.1</version>
-				</plugin>
-				<!--<plugin>-->
-					<!--<groupId>org.codehaus.mojo</groupId>-->
-					<!--<artifactId>cobertura-maven-plugin</artifactId>-->
-					<!--<version>2.6</version>-->
-				<!--</plugin>-->
-			</plugins>
-		</pluginManagement>
-	</build>
-	<reporting>
-		<plugins>
-			<!--<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.7.4</version>
-				<configuration>
-					<effort>Max</effort>
-					<threshold>HIGH</threshold>
-					<findbugsXmlOutput>true</findbugsXmlOutput>
-					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-					<xmlOutput>true</xmlOutput>
-				</configuration>
-			</plugin>-->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.12.1</version>
-			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>org.codehaus.mojo</groupId>-->
-				<!--<artifactId>cobertura-maven-plugin</artifactId>-->
-				<!--<version>2.6</version>-->
-				<!--<configuration>-->
-					<!--<maxmem>256m</maxmem>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
-		</plugins>
-	</reporting>
-
-	<artifactId>payplanet_core</artifactId>
+	<artifactId>com.study</artifactId>
 	<version>1.12.03-SNAPSHOT</version>
 	<packaging>war</packaging>
 </project>

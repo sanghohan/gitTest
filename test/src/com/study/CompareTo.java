@@ -149,7 +149,6 @@ class Exam_WhitePagesItem {
 
     static class NumberAscComapre implements Comparator<Exam_WhitePagesItem> {
 
-
         @Override
         public int compare(Exam_WhitePagesItem arg0, Exam_WhitePagesItem arg1) {
             return arg0.getTeleNum().compareTo(arg1.getTeleNum());

@@ -15,22 +15,22 @@ import java.util.concurrent.Executors;
  */
 public class AsyncFileChannelTest {
 
-    public void asyncFileChannel(Path sourceFilePath, boolean isWrite) throws IOException {
+    public void asyncFileChannel(Path sourceFilePath, final boolean isWrite) throws IOException {
 
-        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        final ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
         try {
 
             System.err.println("AsynchronousFileChannel 테스트 시작");
-            AsynchronousFileChannel asyncFileChannel = AsynchronousFileChannel.open(sourceFilePath,
+            final AsynchronousFileChannel asyncFileChannel = AsynchronousFileChannel.open(sourceFilePath,
                     EnumSet.of(StandardOpenOption.READ), executorService);
 
 
-            long startTime = System.currentTimeMillis();
-            long fileSize = asyncFileChannel.size();
+            final long startTime = System.currentTimeMillis();
+            final long fileSize = asyncFileChannel.size();
 
             // ByteBuffer 크기를 64로 축소
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(16 * 4096);
+            final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(16 * 4096);
 
             // 반복 회수 관리용 변수
             Long iterations = 0L;
