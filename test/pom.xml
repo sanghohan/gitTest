@@ -16,16 +16,12 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	<artifactId>com.test.study</artifactId>
 	<version>1.12.03-SNAPSHOT</version>
 
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
